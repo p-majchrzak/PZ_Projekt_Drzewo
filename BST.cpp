@@ -97,3 +97,49 @@ void BST::findPath(int value) {
         std::cout << "- Brak elementu w drzewie.\n";
     }
 }
+void BST::printPreOrder(Node* node) {
+    if (node == nullptr) return;
+    std::cout << node->data << " ";
+    printPreOrder(node->left);
+    printPreOrder(node->right);
+}
+
+void BST::printInOrder(Node* node) {
+    if (node == nullptr) return;
+    printInOrder(node->left);
+    std::cout << node->data << " ";
+    printInOrder(node->right);
+}
+
+void BST::printPostOrder(Node* node) {
+    if (node == nullptr) return;
+    printPostOrder(node->left);
+    printPostOrder(node->right);
+    std::cout << node->data << " ";
+}
+
+void BST::displayTree() {
+    int choice;
+    std::cout << "\nWybierz metode wyswietlania drzewa:\n";
+    std::cout << "1. Pre-order (Korzen - Lewe - Prawe)\n";
+    std::cout << "2. In-order (Lewe - Korzen - Prawe)\n";
+    std::cout << "3. Post-order (Lewe - Prawe - Korzen)\n";
+    std::cout << "Wybierz opcje: ";
+    std::cin >> choice;
+
+    std::cout << "Zawartosc drzewa: ";
+    switch (choice) {
+        case 1:
+            printPreOrder(root);
+            break;
+        case 2:
+            printInOrder(root);
+            break;
+        case 3:
+            printPostOrder(root);
+            break;
+        default:
+            std::cout << "Nieprawidlowy wybor.";
+    }
+    std::cout << "\n";
+}
