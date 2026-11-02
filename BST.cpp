@@ -1,4 +1,5 @@
 #include "BST.h"
+#include <iostream>
 
 BST::BST() {
     root = nullptr;
@@ -59,4 +60,40 @@ Node* BST::findMin(Node* node) {
         current = current->left;
     }
     return current;
+}
+void BST::clear() {
+    clearRecursive(root);
+    root = nullptr;
+}
+
+void BST::clearRecursive(Node* node) {
+    if (node != nullptr) {
+        clearRecursive(node->left);
+        clearRecursive(node->right);
+        delete node;
+    }
+}
+void BST::findPath(int value) {
+    Node* current = root;
+    std::cout << "Droga do elementu " << value << ": ";
+    bool found = false;
+    
+    while (current != nullptr) {
+        std::cout << current->data << " ";
+        if (current->data == value) {
+            found = true;
+            break;
+        }
+        if (value < current->data) {
+            current = current->left;
+        } else {
+            current = current->right;
+        }
+    }
+    
+    if (found) {
+        std::cout << "- Znaleziono!\n";
+    } else {
+        std::cout << "- Brak elementu w drzewie.\n";
+    }
 }
