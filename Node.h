@@ -1,13 +1,16 @@
 #ifndef NODE_H
 #define NODE_H
 
+/**
+ * @brief Pojedynczy wezel drzewa BST.
+ */
 class Node {
 public:
     int data;
     Node* left;
     Node* right;
 
-    Node(int value);
+    explicit Node(int value);
 };
 
 #endif
