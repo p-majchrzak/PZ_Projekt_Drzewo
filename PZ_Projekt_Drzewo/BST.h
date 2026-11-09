@@ -2,7 +2,7 @@
 #define BST_H
 
 #include "Node.h"
-
+//test 2
 /**
  * @brief Klasa implementujaca binarne drzewo poszukiwan.
  */
