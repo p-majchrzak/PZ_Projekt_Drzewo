@@ -1,8 +1,12 @@
 #ifndef BST_H
 #define BST_H
-
 #include "Node.h"
+<<<<<<< HEAD
 //test 2
+=======
+/**asfdasf
+
+>>>>>>> c834e23f702a69f12467c5dc42ee60dbd89fdc11
 /**
  * @brief Klasa implementujaca binarne drzewo poszukiwan.
  */
