@@ -5,7 +5,6 @@
 class BST {
 private:
     Node* root;
-    int liczbaLosowa;
     Node* insertRecursive(Node* node, int value);
     Node* removeRecursive(Node* node, int value);
     Node* findMin(Node* node);
