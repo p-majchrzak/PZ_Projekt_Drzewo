@@ -1,34 +1,19 @@
 #ifndef BST_H
 #define BST_H
-
 #include "Node.h"
-<<<<<<< Updated upstream
-//Test
-/**
- * @brief Klasa implementujaca binarne drzewo poszukiwan.
-=======
+
 
 /**
  * @brief Klasa reprezentujaca drzewo binarne poszukiwan (BST).
  *
  * Klasa umozliwia dodawanie, usuwanie i wyszukiwanie elementow,
  * czyszczenie drzewa oraz wyswietlanie jego zawartosci.
->>>>>>> Stashed changes
  */
 class BST {
 private:
     /** @brief Wskaznik na korzen drzewa. */
     Node* root;
 
-<<<<<<< Updated upstream
-=======
-    /**
-     * @brief Rekurencyjnie dodaje nowy element do drzewa.
-     * @param node Aktualnie odwiedzany wezel.
-     * @param value Wartosc do dodania.
-     * @return Wskaznik na wezel po wykonaniu operacji.
-     */
->>>>>>> Stashed changes
     Node* insertRecursive(Node* node, int value);
 
     /**
@@ -141,3 +126,4 @@ public:
 };
 
 #endif
+

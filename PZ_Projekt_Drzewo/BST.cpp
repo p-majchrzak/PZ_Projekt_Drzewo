@@ -4,12 +4,9 @@
 BST::BST() {
     root = nullptr;
 }
-
 BST::~BST() {
     clear();
 }
-
-// Dodawanie elementu
 
 void BST::insert(int value) {
     root = insertRecursive(root, value);
