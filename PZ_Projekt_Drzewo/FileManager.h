@@ -13,30 +13,26 @@ class BST;
 class Node;
 
 /**
- * @class FileManager
- * @brief Klasa odpowiedzialna za obsługę plików (zapis/odczyt drzewa).
- * 
- * Klasa udostępnia statyczne metody pozwalające na zapisywanie i wczytywanie 
- * struktury drzewa BST z wykorzystaniem zarówno plików tekstowych, 
- * jak i binarnych, zgodnie z wymaganiami projektu.
+ * @brief Klasa odpowiedzialna za obsluge plikow.
+ *
+ * Umozliwia zapisywanie i odczytywanie drzewa BST
+ * w formacie tekstowym oraz binarnym.
  */
 class FileManager {
 private:
     /**
-     * @brief Rekurencyjna funkcja pomocnicza zapisująca pojedynczy węzeł do strumienia pliku.
-     * 
-     * @param file Referencja do strumienia wyjściowego (pliku).
-     * @param node Wskaźnik na węzeł do zapisania.
-     * @return true jeśli zapis węzła powiódł się, false w przypadku błędu.
+     * @brief Rekurencyjnie zapisuje wezel drzewa do pliku.
+     * @param file Strumien wyjsciowy pliku.
+     * @param node Wskaznik na zapisywany wezel.
+     * @return true jesli zapis przebiegl poprawnie, false w przeciwnym razie.
      */
     static bool writeNode(std::ostream& file, const Node* node);
 
     /**
-     * @brief Rekurencyjna funkcja pomocnicza odczytująca pojedynczy węzeł ze strumienia pliku.
-     * 
-     * @param file Referencja do strumienia wejściowego (pliku).
-     * @param valid Referencja do flagi logicznej informującej o poprawności odczytu.
-     * @return Wskaźnik na nowo utworzony węzeł na podstawie danych z pliku.
+     * @brief Rekurencyjnie odczytuje wezel drzewa z pliku.
+     * @param file Strumien wejsciowy pliku.
+     * @param valid Flaga informujaca o poprawnosci odczytu.
+     * @return Wskaznik na odczytany wezel.
      */
     static Node* readNode(std::istream& file, bool& valid);
 
@@ -46,11 +42,10 @@ public:
     // ==========================================
 
     /**
-     * @brief Zapisuje zawartość drzewa BST do pliku tekstowego.
-     * 
-     * @param tree Referencja do stałego obiektu drzewa, które ma zostać zapisane.
-     * @param filename Nazwa (lub ścieżka) pliku tekstowego docelowego.
-     * @return true jeśli operacja zapisu zakończyła się sukcesem, false w przypadku błędu.
+     * @brief Zapisuje drzewo BST do pliku tekstowego.
+     * @param tree Drzewo przeznaczone do zapisania.
+     * @param filename Nazwa pliku wyjsciowego.
+     * @return true jesli zapis zakonczyl sie powodzeniem, false w przeciwnym razie.
      */
     static bool saveText(
         const BST& tree,
@@ -58,12 +53,11 @@ public:
     );
 
     /**
-     * @brief Wczytuje liczby z pliku tekstowego i dodaje je do drzewa BST.
-     * 
-     * @param tree Referencja do obiektu drzewa, do którego trafią wczytane dane.
-     * @param filename Nazwa (lub ścieżka) pliku tekstowego do odczytu.
-     * @param clearFirst Jeśli true, drzewo zostanie najpierw całkowicie wyczyszczone przed wczytaniem nowych danych.
-     * @return true jeśli operacja odczytu zakończyła się sukcesem, false w przypadku błędu.
+     * @brief Wczytuje drzewo BST z pliku tekstowego.
+     * @param tree Drzewo, do ktorego zostana wczytane dane.
+     * @param filename Nazwa pliku wejsciowego.
+     * @param clearFirst Okresla, czy drzewo ma zostac wyczyszczone przed wczytaniem.
+     * @return true jesli odczyt zakonczyl sie powodzeniem, false w przeciwnym razie.
      */
     static bool loadText(
         BST& tree,
@@ -76,11 +70,10 @@ public:
     // ==========================================
 
     /**
-     * @brief Zapisuje kompletną strukturę drzewa BST do pliku w formacie binarnym.
-     * 
-     * @param tree Referencja do stałego obiektu drzewa, które ma zostać zapisane.
-     * @param filename Nazwa (lub ścieżka) pliku binarnego.
-     * @return true jeśli zapis binarny powiódł się, false w przypadku błędu otwarcia/zapisu.
+     * @brief Zapisuje drzewo BST do pliku binarnego.
+     * @param tree Drzewo przeznaczone do zapisania.
+     * @param filename Nazwa pliku wyjsciowego.
+     * @return true jesli zapis zakonczyl sie powodzeniem, false w przeciwnym razie.
      */
     static bool saveBinary(
         const BST& tree,
@@ -88,14 +81,10 @@ public:
     );
 
     /**
-     * @brief Odczytuje i odtwarza strukturę drzewa BST z pliku binarnego.
-     * 
-     * UWAGA: Metoda domyślnie nadpisuje (czyści) aktualną zawartość przekazanego drzewa 
-     * przed zbudowaniem go na nowo z pliku binarnego.
-     * 
-     * @param tree Referencja do obiektu drzewa, w którym odtworzona zostanie struktura.
-     * @param filename Nazwa (lub ścieżka) pliku binarnego do odczytu.
-     * @return true jeśli odczyt binarny i rekonstrukcja drzewa powiodły się, false w przeciwnym razie.
+     * @brief Wczytuje drzewo BST z pliku binarnego.
+     * @param tree Drzewo, do ktorego zostana wczytane dane.
+     * @param filename Nazwa pliku wejsciowego.
+     * @return true jesli odczyt zakonczyl sie powodzeniem, false w przeciwnym razie.
      */
     static bool loadBinary(
         BST& tree,

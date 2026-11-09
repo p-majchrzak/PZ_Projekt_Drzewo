@@ -7,25 +7,27 @@
 #define NODE_H
 
 /**
- * @class Node
- * @brief Reprezentuje pojedynczy węzeł w binarnym drzewie poszukiwań (BST).
- * 
- * Klasa przechowuje wartość całkowitą oraz wskaźniki na swoich potomków 
- * (lewe i prawe poddrzewo).
+ * @brief Klasa reprezentujaca pojedynczy wezel drzewa BST.
+ *
+ * Przechowuje wartosc oraz wskazniki na lewe i prawe dziecko.
  */
 class Node {
 public:
-    int data;    ///< Wartość całkowita (int) przechowywana w węźle.
-    Node* left;  ///< Wskaźnik na lewe dziecko (węzły z wartościami mniejszymi).
-    Node* right; ///< Wskaźnik na prawe dziecko (węzły z wartościami większymi).
+    /** @brief Wartosc przechowywana w wezle. */
+    int data;
+
+    /** @brief Wskaznik na lewe dziecko wezla. */
+    Node* left;
+
+    /** @brief Wskaznik na prawe dziecko wezla. */
+    Node* right;
 
     /**
-     * @brief Konstruktor inicjalizujący nowy węzeł.
-     * 
-     * Tworzy węzeł z zadaną wartością i ustawia wskaźniki left oraz right na nullptr.
-     * Słowo kluczowe explicit zapobiega niejawnym konwersjom typów.
-     * 
-     * @param value Wartość, która ma zostać przypisana do węzła.
+     * @brief Konstruktor wezla.
+     *
+     * Inicjalizuje wartosc oraz ustawia wskazniki dzieci na nullptr.
+     *
+     * @param value Wartosc przypisywana do wezla.
      */
     explicit Node(int value);
 };

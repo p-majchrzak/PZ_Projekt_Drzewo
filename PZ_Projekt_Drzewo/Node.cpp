@@ -6,11 +6,12 @@
 #include "Node.h"
 
 /**
- * @brief Konstruktor klasy Node.
- * 
- * Przypisuje węzłowi początkową wartość i inicjalizuje wskaźniki potomków (lewe i prawe dziecko) jako puste (nullptr).
- * 
- * @param value Wartość całkowita (int) przypisywana do nowego węzła.
+ * @brief Konstruktor wezla drzewa BST.
+ *
+ * Inicjalizuje wezel podana wartoscia oraz ustawia
+ * wskazniki na lewe i prawe dziecko na nullptr.
+ *
+ * @param value Wartosc przechowywana w wezle.
  */
 Node::Node(int value) {
     data = value;
