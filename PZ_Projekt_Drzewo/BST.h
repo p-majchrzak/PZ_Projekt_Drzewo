@@ -1,14 +1,6 @@
 #ifndef BST_H
 #define BST_H
 #include "Node.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> 71a0f9d26b7398c4a337242ac5e89710abaa6191
 class BST {
 private:
     Node* root;
