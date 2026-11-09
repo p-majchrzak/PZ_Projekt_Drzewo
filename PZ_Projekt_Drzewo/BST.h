@@ -3,9 +3,7 @@
 
 #include "Node.h"
 
-/**
- * @brief Klasa implementujaca binarne drzewo poszukiwan.
- */
+
 class BST {
 private:
     Node* root;
