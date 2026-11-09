@@ -36,7 +36,11 @@ public:
     void displayGraphic();
 };
 
+<<<<<<< HEAD
 #endif
 
 ataknakomsite
 
+=======
+//chyba z 6 proba zrobienia konfliku u kamila, ale kamil jest bezkonfliktowy
+>>>>>>> 9cf6c3209d23eedcc5a470e9a2de8e82b5630a6e
