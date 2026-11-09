@@ -4,7 +4,6 @@
 BST::BST() {
     root = nullptr;
 }
-
 BST::~BST() {
     clear();
 }
