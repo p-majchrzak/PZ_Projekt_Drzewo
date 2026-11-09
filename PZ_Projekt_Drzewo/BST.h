@@ -36,11 +36,4 @@ public:
     void displayGraphic();
 };
 
-<<<<<<< HEAD
-#endif
-=======
-#endif
-
-void printGraphic(Node* node, int depth);
-
->>>>>>> 0e9af1a5b52c6e47ab83e7dc435bd1b64e4d3a3a
+//chyba z 6 proba zrobienia konfliku u kamila, ale kamil jest bezkonfliktowy
