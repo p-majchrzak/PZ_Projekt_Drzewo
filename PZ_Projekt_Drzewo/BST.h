@@ -2,6 +2,7 @@
 #define BST_H
 #include "Node.h"
 
+
 class BST {
 private:
     Node* root;
