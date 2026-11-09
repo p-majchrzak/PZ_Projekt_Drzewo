@@ -1,3 +1,8 @@
+/**
+ * @file Node.cpp
+ * @brief Implementacja metod klasy Node dla drzewa BST.
+ */
+
 #include "Node.h"
 
 /**

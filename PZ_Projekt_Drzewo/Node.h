@@ -1,3 +1,8 @@
+/**
+ * @file Node.h
+ * @brief Deklaracja struktury węzła dla drzewa BST.
+ */
+
 #ifndef NODE_H
 #define NODE_H
 

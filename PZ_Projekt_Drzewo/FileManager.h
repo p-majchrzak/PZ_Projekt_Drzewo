@@ -1,8 +1,14 @@
+/**
+ * @file FileManager.h
+ * @brief Deklaracja klasy FileManager służącej do zapisu i odczytu drzewa BST z plików.
+ */
+
 #ifndef FILE_MANAGER_H
 #define FILE_MANAGER_H
 
 #include <string>
 
+// Deklaracje zapowiadające (forward declarations), aby uniknąć cyklicznych zależności
 class BST;
 class Node;
 
@@ -31,7 +37,9 @@ private:
     static Node* readNode(std::istream& file, bool& valid);
 
 public:
-    // Pliki tekstowe
+    // ==========================================
+    // PLIKI TEKSTOWE
+    // ==========================================
 
     /**
      * @brief Zapisuje drzewo BST do pliku tekstowego.
@@ -57,7 +65,9 @@ public:
         bool clearFirst
     );
 
-    // Pliki binarne
+    // ==========================================
+    // PLIKI BINARNE
+    // ==========================================
 
     /**
      * @brief Zapisuje drzewo BST do pliku binarnego.
