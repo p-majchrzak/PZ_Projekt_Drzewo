@@ -38,5 +38,5 @@ public:
 
 #endif
 
-void printGraphic(Node* node, int depth);
+ataknakomsite
 
