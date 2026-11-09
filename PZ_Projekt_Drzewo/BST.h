@@ -1,129 +1,154 @@
+/**
+ * @file BST.h
+ * @brief Deklaracja klasy BST reprezentującej binarne drzewo poszukiwań (Binary Search Tree).
+ */
+
 #ifndef BST_H
 #define BST_H
 #include "Node.h"
 
-
 /**
- * @brief Klasa reprezentujaca drzewo binarne poszukiwan (BST).
- *
- * Klasa umozliwia dodawanie, usuwanie i wyszukiwanie elementow,
- * czyszczenie drzewa oraz wyswietlanie jego zawartosci.
+ * @class BST
+ * @brief Klasa zarządzająca drzewem BST.
+ * 
+ * Zapewnia interfejs do wstawiania, usuwania, wyszukiwania drogi do elementu 
+ * oraz różnego rodzaju wypisywania zawartości drzewa na ekran.
  */
 class BST {
 private:
-    /** @brief Wskaznik na korzen drzewa. */
-    Node* root;
+    Node* root; ///< Wskaźnik na główny węzeł (korzeń) drzewa.
 
+    /**
+     * @brief Rekurencyjna funkcja pomocnicza do dodawania nowego węzła.
+     * 
+     * @param node Aktualnie sprawdzany węzeł.
+     * @param value Wartość do wstawienia.
+     * @return Wskaźnik na węzeł po wstawieniu nowej wartości.
+     */
     Node* insertRecursive(Node* node, int value);
 
     /**
-     * @brief Rekurencyjnie usuwa element z drzewa.
-     * @param node Aktualnie odwiedzany wezel.
-     * @param value Wartosc do usuniecia.
-     * @return Wskaznik na wezel po wykonaniu operacji.
+     * @brief Rekurencyjna funkcja pomocnicza do usuwania węzła z drzewa.
+     * 
+     * @param node Aktualnie sprawdzany węzeł.
+     * @param value Wartość do usunięcia.
+     * @return Wskaźnik na węzeł po usunięciu wybranej wartości.
      */
     Node* removeRecursive(Node* node, int value);
 
     /**
-     * @brief Wyszukuje najmniejszy element w poddrzewie.
-     * @param node Korzen przeszukiwanego poddrzewa.
-     * @return Wskaznik na wezel o najmniejszej wartosci.
+     * @brief Znajduje węzeł z najmniejszą wartością w danym poddrzewie.
+     * 
+     * Wykorzystywane głównie przy usuwaniu węzłów posiadających dwoje dzieci.
+     * 
+     * @param node Węzeł, od którego rozpoczynamy szukanie (korzeń poddrzewa).
+     * @return Wskaźnik na węzeł z najmniejszą wartością.
      */
     Node* findMin(Node* node);
 
     /**
-     * @brief Rekurencyjnie usuwa wszystkie wezly poddrzewa.
-     * @param node Korzen poddrzewa przeznaczonego do usuniecia.
+     * @brief Rekurencyjna funkcja pomocnicza czyszcząca całe poddrzewo.
+     * 
+     * @param node Węzeł, od którego zaczynamy usuwanie elementów.
      */
     void clearRecursive(Node* node);
 
     /**
-     * @brief Wyswietla elementy drzewa w porzadku PreOrder.
-     * @param node Aktualnie odwiedzany wezel.
+     * @brief Rekurencyjne wypisywanie drzewa w porządku Pre-Order (Korzeń-Lewe-Prawe).
+     * 
+     * @param node Aktualnie odwiedzany węzeł.
      */
     void printPreOrder(Node* node);
 
     /**
-     * @brief Wyswietla elementy drzewa w porzadku InOrder.
-     * @param node Aktualnie odwiedzany wezel.
+     * @brief Rekurencyjne wypisywanie drzewa w porządku In-Order (Lewe-Korzeń-Prawe).
+     * 
+     * @param node Aktualnie odwiedzany węzeł.
      */
     void printInOrder(Node* node);
 
     /**
-     * @brief Wyswietla elementy drzewa w porzadku PostOrder.
-     * @param node Aktualnie odwiedzany wezel.
+     * @brief Rekurencyjne wypisywanie drzewa w porządku Post-Order (Lewe-Prawe-Korzeń).
+     * 
+     * @param node Aktualnie odwiedzany węzeł.
      */
     void printPostOrder(Node* node);
 
     /**
-     * @brief Wyswietla graficzna reprezentacje poddrzewa.
-     * @param node Aktualnie odwiedzany wezel.
-     * @param depth Poziom zaglebienia w drzewie.
+     * @brief Pomocnicza funkcja do graficznego rysowania drzewa w konsoli.
+     * 
+     * @param node Aktualny węzeł.
+     * @param depth Aktualna głębokość (poziom) w drzewie (służy do wcięć).
      */
     void printGraphic(Node* node, int depth);
 
-    /** @brief Klasa FileManager posiada dostep do prywatnych skladowych BST. */
+    /**
+     * @brief Deklaracja przyjaźni z klasą FileManager.
+     * Umożliwia klasie FileManager bezpośredni dostęp do prywatnych składowych drzewa 
+     * (np. do korzenia) w celu zapisu i odczytu z pliku.
+     */
     friend class FileManager;
 
 public:
     /**
-     * @brief Konstruktor klasy BST.
-     *
-     * Inicjalizuje puste drzewo binarne poszukiwan.
+     * @brief Konstruktor domyślny.
+     * Inicjalizuje puste drzewo (root = nullptr).
      */
     BST();
 
     /**
-     * @brief Destruktor klasy BST.
-     *
-     * Zwalnia pamiec zajmowana przez wezly drzewa.
+     * @brief Destruktor.
+     * Wywołuje metodę czyszczącą drzewo przed zniszczeniem obiektu.
      */
     ~BST();
 
     /**
-     * @brief Konstruktor kopiujacy jest zablokowany.
+     * @brief Zablokowanie konstruktora kopiującego.
+     * Zapobiega błędom związanym z podwójnym zwalnianiem pamięci.
      */
     BST(const BST&) = delete;
 
     /**
-     * @brief Operator przypisania kopiujacego jest zablokowany.
-     * @return Referencja do obiektu BST.
+     * @brief Zablokowanie operatora przypisania.
+     * Zapobiega niekontrolowanemu kopiowaniu struktury dynamicznej.
      */
     BST& operator=(const BST&) = delete;
 
     /**
-     * @brief Dodaje nowy element do drzewa.
-     * @param value Wartosc przeznaczona do dodania.
+     * @brief Dodaje nową wartość do drzewa BST.
+     * 
+     * @param value Wartość całkowita (int) do zapisania.
      */
     void insert(int value);
 
     /**
-     * @brief Usuwa wskazany element z drzewa.
-     * @param value Wartosc przeznaczona do usuniecia.
+     * @brief Usuwa wskazaną wartość z drzewa, jeśli istnieje.
+     * 
+     * @param value Wartość całkowita (int) do usunięcia.
      */
     void remove(int value);
 
     /**
-     * @brief Usuwa wszystkie elementy drzewa.
+     * @brief Usuwa wszystkie elementy z drzewa zwalniając pamięć.
      */
     void clear();
 
     /**
-     * @brief Wyswietla sciezke prowadząca do wskazanego elementu.
-     * @param value Wyszukiwana wartosc.
+     * @brief Szuka podanego elementu i wypisuje w konsoli przebytą do niego drogę.
+     * 
+     * @param value Szukana wartość całkowita (int).
      */
     void findPath(int value);
 
     /**
-     * @brief Wyswietla zawartosc drzewa w roznych porzadkach przechodzenia.
+     * @brief Wyświetla tekstowe menu z wyborem metody przeglądu (Pre/In/Post) i wypisuje drzewo.
      */
     void displayTree();
 
     /**
-     * @brief Wyswietla graficzna reprezentacje drzewa.
+     * @brief Wyświetla strukturalną (graficzną) reprezentację drzewa w konsoli.
      */
     void displayGraphic();
 };
 
 #endif
-
