@@ -1,12 +1,7 @@
 #ifndef BST_H
 #define BST_H
 #include "Node.h"
-<<<<<<< HEAD
 
-//uczymy sie robic konflikty w git
-
-=======
->>>>>>> c4cbcd9b6ee19f5fd05a948a713e1de52a76bed6
 class BST {
 private:
     Node* root;
@@ -42,4 +37,6 @@ public:
 };
 
 #endif
+
+void printGraphic(Node* node, int depth);
 
