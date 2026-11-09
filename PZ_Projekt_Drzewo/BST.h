@@ -2,6 +2,8 @@
 #define BST_H
 #include "Node.h"
 
+//uczymy sie robic konflikty w git
+
 class BST {
 private:
     Node* root;
