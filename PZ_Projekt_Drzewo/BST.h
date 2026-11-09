@@ -1,13 +1,11 @@
 #ifndef BST_H
 #define BST_H
-
 #include "Node.h"
 
 
 class BST {
 private:
     Node* root;
-
     Node* insertRecursive(Node* node, int value);
     Node* removeRecursive(Node* node, int value);
     Node* findMin(Node* node);
@@ -39,3 +37,4 @@ public:
 };
 
 #endif
+
