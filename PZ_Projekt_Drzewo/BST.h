@@ -2,7 +2,7 @@
 #define BST_H
 #include "Node.h"
 <<<<<<< HEAD
-//test 2
+//test 2tak
 =======
 /**asfdasf
 
