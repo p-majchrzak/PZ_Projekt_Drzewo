@@ -1,17 +1,7 @@
 #ifndef BST_H
 #define BST_H
 #include "Node.h"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-//test 2tak
-=======
-/**asfdasf
->>>>>>> 21b24088c4c061a24e1a399a4bd265334c08f1fd
 
-/**
- * @brief Klasa implementujaca binarne drzewo poszukiwan.
- */
 class BST {
 private:
     Node* root;
