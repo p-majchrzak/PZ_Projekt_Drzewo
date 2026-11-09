@@ -1,7 +1,7 @@
 #ifndef BST_H
 #define BST_H
-
 #include "Node.h"
+/**asfdasf
 
 /**
  * @brief Klasa implementujaca binarne drzewo poszukiwan.
