@@ -9,8 +9,12 @@
 #include <ostream>
 #include <vector>
 
-// Zapis drzewa do pliku tekstowego
-
+/**
+ * @brief Zapisuje drzewo BST do pliku tekstowego w porządku in-order.
+ * @param tree Referencja do zapisywanego drzewa BST.
+ * @param filename Ścieżka do pliku tekstowego.
+ * @return true jeśli zapis powiódł się, false w przeciwnym wypadku.
+ */
 bool FileManager::saveText(
     const BST& tree,
     const std::string& filename
@@ -53,8 +57,13 @@ bool FileManager::saveText(
     return file.good();
 }
 
-// Wczytywanie danych z pliku tekstowego
-
+/**
+ * @brief Wczytuje dane z pliku tekstowego i buduje z nich drzewo BST.
+ * @param tree Referencja do drzewa BST, do którego zostaną wczytane dane.
+ * @param filename Ścieżka do pliku tekstowego.
+ * @param clearFirst Określa, czy wyczyścić istniejące drzewo przed wczytaniem nowych danych.
+ * @return true jeśli wczytywanie powiodło się, false w przeciwnym wypadku.
+ */
 bool FileManager::loadText(
     BST& tree,
     const std::string& filename,
@@ -96,8 +105,12 @@ bool FileManager::loadText(
     return true;
 }
 
-// Zapis pojedynczego wezla do pliku binarnego
-
+/**
+ * @brief Rekurencyjnie zapisuje pojedynczy węzeł oraz jego potomków do strumienia binarnego.
+ * @param file Strumień wyjściowy pliku binarnego.
+ * @param node Wskaźnik na zapisywany węzeł.
+ * @return true jeśli zapis przebiegł pomyślnie, false w przeciwnym wypadku.
+ */
 bool FileManager::writeNode(
     std::ostream& file,
     const Node* node
@@ -125,12 +138,18 @@ bool FileManager::writeNode(
            writeNode(file, node->right);
 }
 
-// Odczyt pojedynczego wezla z pliku binarnego
-
+/**
+ * @brief Rekurencyjnie odczytuje pojedynczy węzeł ze strumienia binarnego.
+ * @param file Strumień wejściowy pliku binarnego.
+ * @param valid Referencja do flagi określającej poprawność struktury i danych.
+ * @return Node* Wskaźnik na nowo utworzony węzeł lub nullptr w przypadku błędu.
+ */
 Node* FileManager::readNode(
     std::istream& file,
     bool& valid
 ) {
+    if (!valid) return nullptr;
+
     std::uint8_t marker = 0;
 
     file.read(
@@ -159,10 +178,7 @@ Node* FileManager::readNode(
         sizeof(value)
     );
 
-    if (!file ||
-        value < std::numeric_limits<int>::min() ||
-        value > std::numeric_limits<int>::max()) {
-
+    if (!file) {
         valid = false;
         return nullptr;
     }
@@ -170,39 +186,17 @@ Node* FileManager::readNode(
     Node* node = new Node(static_cast<int>(value));
 
     node->left = readNode(file, valid);
-
-    if (valid) {
-        node->right = readNode(file, valid);
-    }
-
-    if (!valid) {
-
-        std::vector<Node*> pending{node};
-
-        while (!pending.empty()) {
-
-            Node* current = pending.back();
-            pending.pop_back();
-
-            if (current->left) {
-                pending.push_back(current->left);
-            }
-
-            if (current->right) {
-                pending.push_back(current->right);
-            }
-
-            delete current;
-        }
-
-        return nullptr;
-    }
+    node->right = readNode(file, valid);
 
     return node;
 }
 
-// Zapis calego drzewa binarnie
-
+/**
+ * @brief Zapisuje całe drzewo BST w formacie binarnym do pliku.
+ * @param tree Referencja do zapisywanego drzewa BST.
+ * @param filename Ścieżka do pliku binarnego.
+ * @return true jeśli zapis powiódł się, false w przeciwnym wypadku.
+ */
 bool FileManager::saveBinary(
     const BST& tree,
     const std::string& filename
@@ -222,8 +216,12 @@ bool FileManager::saveBinary(
            file.good();
 }
 
-// Odczyt calego drzewa binarnie
-
+/**
+ * @brief Wczytuje całe drzewo BST z pliku binarnego.
+ * @param tree Referencja do drzewa BST, do którego zostaną wczytane dane.
+ * @param filename Ścieżka do pliku binarnego.
+ * @return true jeśli odczyt powiódł się, false w przeciwnym wypadku.
+ */
 bool FileManager::loadBinary(
     BST& tree,
     const std::string& filename
@@ -251,7 +249,7 @@ bool FileManager::loadBinary(
 
     Node* newRoot = readNode(file, valid);
 
-    if (!valid || file.peek() != std::char_traits<char>::eof()) {
+    if (!valid) {
 
         std::vector<Node*> pending;
 

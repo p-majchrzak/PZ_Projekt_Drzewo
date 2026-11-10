@@ -1,17 +1,36 @@
 #include "BST.h"
 #include <iostream>
 
+/**
+ * @brief Konstruktor domyślny klasy BST.
+ * Tworzy puste drzewo, ustawiając wskaźnik na korzeń na nullptr.
+ */
 BST::BST() {
     root = nullptr;
 }
+
+/**
+ * @brief Destruktor klasy BST.
+ * Usuwa całe drzewo z pamięci za pomocą metody clear().
+ */
 BST::~BST() {
     clear();
 }
 
+/**
+ * @brief Publiczna metoda wstawiająca nową wartość do drzewa BST.
+ * @param value Wartość typu int do wstawienia.
+ */
 void BST::insert(int value) {
     root = insertRecursive(root, value);
 }
 
+/**
+ * @brief Prywatna, rekurencyjna metoda pomocnicza wstawiająca wartość do poddrzewa.
+ * @param node Wskaźnik na aktualnie rozważany węzeł.
+ * @param value Wartość typu int do wstawienia.
+ * @return Node* Wskaźnik na zmodyfikowany węzeł.
+ */
 Node* BST::insertRecursive(Node* node, int value) {
     if (node == nullptr) {
         return new Node(value);
@@ -27,8 +46,11 @@ Node* BST::insertRecursive(Node* node, int value) {
     return node;
 }
 
-// Wyszukiwanie najmniejszego elementu
-
+/**
+ * @brief Znajduje węzeł o najmniejszej wartości w poddrzewie.
+ * @param node Wskaźnik na korzeń poddrzewa, w którym szukamy minimum.
+ * @return Node* Wskaźnik na węzeł z najmniejszą wartością.
+ */
 Node* BST::findMin(Node* node) {
     Node* current = node;
 
@@ -39,12 +61,20 @@ Node* BST::findMin(Node* node) {
     return current;
 }
 
-// Usuwanie elementu
-
+/**
+ * @brief Publiczna metoda usuwająca węzeł o zadanej wartości z drzewa.
+ * @param value Wartość typu int do usunięcia.
+ */
 void BST::remove(int value) {
     root = removeRecursive(root, value);
 }
 
+/**
+ * @brief Prywatna, rekurencyjna metoda pomocnicza usuwająca węzeł z poddrzewa.
+ * @param node Wskaźnik na aktualny węzeł.
+ * @param value Wartość do usunięcia.
+ * @return Node* Wskaźnik na zmodyfikowany węzeł.
+ */
 Node* BST::removeRecursive(Node* node, int value) {
     if (node == nullptr) {
         return nullptr;
@@ -57,25 +87,21 @@ Node* BST::removeRecursive(Node* node, int value) {
         node->right = removeRecursive(node->right, value);
     }
     else {
-
-        // Wezel bez lewego dziecka
-
+        // Węzeł bez lewego dziecka
         if (node->left == nullptr) {
             Node* temp = node->right;
             delete node;
             return temp;
         }
 
-        // Wezel bez prawego dziecka
-
+        // Węzeł bez prawego dziecka
         if (node->right == nullptr) {
             Node* temp = node->left;
             delete node;
             return temp;
         }
 
-        // Wezel posiada dwoje dzieci
-
+        // Węzeł posiada dwoje dzieci
         Node* temp = findMin(node->right);
 
         node->data = temp->data;
@@ -86,13 +112,18 @@ Node* BST::removeRecursive(Node* node, int value) {
     return node;
 }
 
-// Usuwanie calego drzewa
-
+/**
+ * @brief Usuwa całe drzewo, zwalniając pamięć i ustawiając korzeń na nullptr.
+ */
 void BST::clear() {
     clearRecursive(root);
     root = nullptr;
 }
 
+/**
+ * @brief Prywatna, rekurencyjna metoda pomocnicza do usuwania węzłów drzewa.
+ * @param node Wskaźnik na usuwany węzeł.
+ */
 void BST::clearRecursive(Node* node) {
     if (node != nullptr) {
         clearRecursive(node->left);
@@ -102,15 +133,16 @@ void BST::clearRecursive(Node* node) {
     }
 }
 
-// Wyszukiwanie drogi do elementu
-
+/**
+ * @brief Wyszukuje drogę od korzenia do podanej wartości i wypisuje ją na standardowe wyjście.
+ * @param value Szukana wartość typu int.
+ */
 void BST::findPath(int value) {
     Node* current = root;
 
     std::cout << "Droga do elementu " << value << ": ";
 
     while (current != nullptr) {
-
         std::cout << current->data;
 
         if (current->data == value) {
@@ -131,8 +163,10 @@ void BST::findPath(int value) {
     std::cout << "Brak elementu w drzewie.\n";
 }
 
-// Preorder
-
+/**
+ * @brief Wyświetla elementy drzewa w porządku pre-order (Korzeń - Lewe - Prawe).
+ * @param node Wskaźnik na aktualny węzeł.
+ */
 void BST::printPreOrder(Node* node) {
     if (node == nullptr) return;
 
@@ -142,8 +176,10 @@ void BST::printPreOrder(Node* node) {
     printPreOrder(node->right);
 }
 
-// Inorder
-
+/**
+ * @brief Wyświetla elementy drzewa w porządku in-order (Lewe - Korzeń - Prawe).
+ * @param node Wskaźnik na aktualny węzeł.
+ */
 void BST::printInOrder(Node* node) {
     if (node == nullptr) return;
 
@@ -154,8 +190,10 @@ void BST::printInOrder(Node* node) {
     printInOrder(node->right);
 }
 
-// Postorder
-
+/**
+ * @brief Wyświetla elementy drzewa w porządku post-order (Lewe - Prawe - Korzeń).
+ * @param node Wskaźnik na aktualny węzeł.
+ */
 void BST::printPostOrder(Node* node) {
     if (node == nullptr) return;
 
@@ -165,8 +203,9 @@ void BST::printPostOrder(Node* node) {
     std::cout << node->data << " ";
 }
 
-// Wybor metody przechodzenia drzewa
-
+/**
+ * @brief Pozwala użytkownikowi wybrać metodę przechodzenia drzewa i wyświetla jego zawartość.
+ */
 void BST::displayTree() {
     int choice;
 
@@ -187,7 +226,6 @@ void BST::displayTree() {
     std::cout << "Zawartosc drzewa: ";
 
     switch (choice) {
-
         case 1:
             printPreOrder(root);
             break;
@@ -207,8 +245,11 @@ void BST::displayTree() {
     std::cout << "\n";
 }
 
-// Graficzne wyswietlanie drzewa
-
+/**
+ * @brief Pomocnicza metoda do graficznego, tekstowego wyświetlania drzewa obróconego o 90 stopni.
+ * @param node Wskaźnik na aktualny węzeł.
+ * @param depth Aktualna głębokość zagnieżdżenia (używana do wcięć).
+ */
 void BST::printGraphic(Node* node, int depth) {
     if (node == nullptr) return;
 
@@ -223,6 +264,9 @@ void BST::printGraphic(Node* node, int depth) {
     printGraphic(node->left, depth + 1);
 }
 
+/**
+ * @brief Publiczna metoda inicjująca graficzne wyświetlanie drzewa.
+ */
 void BST::displayGraphic() {
     if (root == nullptr) {
         std::cout << "Drzewo jest puste.\n";

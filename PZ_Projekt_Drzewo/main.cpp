@@ -5,7 +5,11 @@
 #include <limits>
 #include <string>
 
-// Pobieranie liczby od uzytkownika
+/**
+ * @brief Pobiera poprawną liczbę całkowitą od użytkownika, zabezpieczając przed błędami wejścia.
+ * @param message Komunikat wyświetlany użytkownikowi przed wprowadzeniem liczby.
+ * @return int Wczytana wartość całkowita.
+ */
 int readInt(const std::string& message) {
     int value;
 
@@ -27,7 +31,11 @@ int readInt(const std::string& message) {
     }
 }
 
-// Pobieranie nazwy pliku
+/**
+ * @brief Pobiera nazwę pliku od użytkownika.
+ * @param message Komunikat wyświetlany użytkownikowi przed podaniem nazwy.
+ * @return std::string Wczytana nazwa pliku.
+ */
 std::string readFilename(const std::string& message) {
     std::string filename;
 
@@ -37,7 +45,9 @@ std::string readFilename(const std::string& message) {
     return filename;
 }
 
-// Menu glowne
+/**
+ * @brief Wyświetla główne menu interaktywne programu na standardowym wyjściu.
+ */
 void showMenu() {
     std::cout << "\n========== MENU BST ==========\n";
 
@@ -58,9 +68,41 @@ void showMenu() {
     std::cout << "==============================\n";
 }
 
-// Funkcja glowna
+/**
+ * @brief Główna funkcja programu sterująca działaniem pętli menu i zarządzaniem drzewem BST.
+ * @return int Kod powrotu programu (0 w przypadku poprawnego zakończenia).
+ */
 int main() {
     BST tree;
+
+    // --- WYBÓR ŹRÓDŁA DANYCH NA STARCIE ---
+    std::cout << "=== START PROGRAMU ===\n";
+    std::cout << "Wybierz zrodlo wczytywania danych na starcie:\n";
+    std::cout << "1. Wczytaj z pliku tekstowego\n";
+    std::cout << "2. Wczytaj z pliku binarnego\n";
+    std::cout << "3. Rozpocznij z pustym drzewem\n";
+
+    int startChoice = readInt("Wybierz opcje: ");
+
+    if (startChoice == 1) {
+        std::string filename = readFilename("Podaj nazwe pliku tekstowego: ");
+        if (FileManager::loadText(tree, filename, true)) {
+            std::cout << "Pomyslnie wczytano dane z pliku tekstowego na starcie.\n";
+        } else {
+            std::cout << "Blad wczytywania pliku tekstowego. Uruchamiam z pustym drzewem.\n";
+        }
+    } 
+    else if (startChoice == 2) {
+        std::string filename = readFilename("Podaj nazwe pliku binarnego: ");
+        if (FileManager::loadBinary(tree, filename)) {
+            std::cout << "Pomyslnie wczytano dane z pliku binarnego na starcie.\n";
+        } else {
+            std::cout << "Blad wczytywania pliku binarnego. Uruchamiam z pustym drzewem.\n";
+        }
+    } 
+    else {
+        std::cout << "Uruchamiam z pustym drzewem.\n";
+    }
 
     bool running = true;
 
@@ -223,4 +265,3 @@ int main() {
 
     return 0;
 }
-
