@@ -75,6 +75,35 @@ void showMenu() {
 int main() {
     BST tree;
 
+    // --- WYBÓR ŹRÓDŁA DANYCH NA STARCIE ---
+    std::cout << "=== START PROGRAMU ===\n";
+    std::cout << "Wybierz zrodlo wczytywania danych na starcie:\n";
+    std::cout << "1. Wczytaj z pliku tekstowego\n";
+    std::cout << "2. Wczytaj z pliku binarnego\n";
+    std::cout << "3. Rozpocznij z pustym drzewem\n";
+
+    int startChoice = readInt("Wybierz opcje: ");
+
+    if (startChoice == 1) {
+        std::string filename = readFilename("Podaj nazwe pliku tekstowego: ");
+        if (FileManager::loadText(tree, filename, true)) {
+            std::cout << "Pomyslnie wczytano dane z pliku tekstowego na starcie.\n";
+        } else {
+            std::cout << "Blad wczytywania pliku tekstowego. Uruchamiam z pustym drzewem.\n";
+        }
+    } 
+    else if (startChoice == 2) {
+        std::string filename = readFilename("Podaj nazwe pliku binarnego: ");
+        if (FileManager::loadBinary(tree, filename)) {
+            std::cout << "Pomyslnie wczytano dane z pliku binarnego na starcie.\n";
+        } else {
+            std::cout << "Blad wczytywania pliku binarnego. Uruchamiam z pustym drzewem.\n";
+        }
+    } 
+    else {
+        std::cout << "Uruchamiam z pustym drzewem.\n";
+    }
+
     bool running = true;
 
     while (running) {

@@ -148,6 +148,8 @@ Node* FileManager::readNode(
     std::istream& file,
     bool& valid
 ) {
+    if (!valid) return nullptr;
+
     std::uint8_t marker = 0;
 
     file.read(
@@ -176,10 +178,7 @@ Node* FileManager::readNode(
         sizeof(value)
     );
 
-    if (!file ||
-        value < std::numeric_limits<int>::min() ||
-        value > std::numeric_limits<int>::max()) {
-
+    if (!file) {
         valid = false;
         return nullptr;
     }
@@ -187,33 +186,7 @@ Node* FileManager::readNode(
     Node* node = new Node(static_cast<int>(value));
 
     node->left = readNode(file, valid);
-
-    if (valid) {
-        node->right = readNode(file, valid);
-    }
-
-    if (!valid) {
-
-        std::vector<Node*> pending{node};
-
-        while (!pending.empty()) {
-
-            Node* current = pending.back();
-            pending.pop_back();
-
-            if (current->left) {
-                pending.push_back(current->left);
-            }
-
-            if (current->right) {
-                pending.push_back(current->right);
-            }
-
-            delete current;
-        }
-
-        return nullptr;
-    }
+    node->right = readNode(file, valid);
 
     return node;
 }
@@ -276,7 +249,7 @@ bool FileManager::loadBinary(
 
     Node* newRoot = readNode(file, valid);
 
-    if (!valid || file.peek() != std::char_traits<char>::eof()) {
+    if (!valid) {
 
         std::vector<Node*> pending;
 
