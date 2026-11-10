@@ -5,7 +5,11 @@
 #include <limits>
 #include <string>
 
-// Pobieranie liczby od uzytkownika
+/**
+ * @brief Pobiera poprawną liczbę całkowitą od użytkownika, zabezpieczając przed błędami wejścia.
+ * @param message Komunikat wyświetlany użytkownikowi przed wprowadzeniem liczby.
+ * @return int Wczytana wartość całkowita.
+ */
 int readInt(const std::string& message) {
     int value;
 
@@ -27,7 +31,11 @@ int readInt(const std::string& message) {
     }
 }
 
-// Pobieranie nazwy pliku
+/**
+ * @brief Pobiera nazwę pliku od użytkownika.
+ * @param message Komunikat wyświetlany użytkownikowi przed podaniem nazwy.
+ * @return std::string Wczytana nazwa pliku.
+ */
 std::string readFilename(const std::string& message) {
     std::string filename;
 
@@ -37,7 +45,9 @@ std::string readFilename(const std::string& message) {
     return filename;
 }
 
-// Menu glowne
+/**
+ * @brief Wyświetla główne menu interaktywne programu na standardowym wyjściu.
+ */
 void showMenu() {
     std::cout << "\n========== MENU BST ==========\n";
 
@@ -58,7 +68,10 @@ void showMenu() {
     std::cout << "==============================\n";
 }
 
-// Funkcja glowna
+/**
+ * @brief Główna funkcja programu sterująca działaniem pętli menu i zarządzaniem drzewem BST.
+ * @return int Kod powrotu programu (0 w przypadku poprawnego zakończenia).
+ */
 int main() {
     BST tree;
 
@@ -223,4 +236,3 @@ int main() {
 
     return 0;
 }
-
